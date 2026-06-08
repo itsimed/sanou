@@ -7,6 +7,12 @@
         "backend": {
             "root": "backend",
             "routePrefix": "/_/backend"
-        }
+        },
+        {
+         "version": 2,
+  "public": true,
+  "cleanUrls": true
+}
+        
     }
 }
