@@ -1,0 +1,210 @@
+/* Header component styles */
+
+/* Navigation Links */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Mobile Navigation Link */
+.active-mobile-link {
+  position: relative;
+  display: inline-block;
+}
+
+.active-mobile-link::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #ffffff;
+  transition: width 0.3s ease-in-out;
+}
+
+.active-mobile-link:hover::after {
+  width: 100%;
+}
+
+/* Bouton d'accessibilité - Style élégant avec cadre décalé (inspiré du btn-don) */
+.btn-accessibility {
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  background-color: #ffffff;
+  transition: transform 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
+  z-index: 0;
+  overflow: visible;
+  padding: 0;
+}
+
+/* Affiche le bouton uniquement à partir de md (desktop) */
+@media (min-width: 768px) {
+  .btn-accessibility {
+    display: flex;
+  }
+}
+
+.btn-accessibility img {
+  width: 50px;
+  height: 50px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+/* Cadre blanc décalé en arrière-plan */
+.btn-accessibility::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ffffff;
+  background-color: transparent;
+  z-index: -1;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Effet au survol : le bouton rejoint son cadre */
+.btn-accessibility:hover {
+  transform: translate(12px, 12px);
+}
+
+.btn-accessibility:hover::after {
+  top: 0;
+  left: 0;
+}
+
+/* Mobile Accessibility Button */
+.mobile-accessibility-btn {
+  position: relative;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 0.1em;
+}
+
+.mobile-accessibility-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.3s ease-in-out;
+}
+
+.mobile-accessibility-btn:hover::after {
+  width: calc(100% - 40px);
+}
+
+/* Focus state for accessibility */
+.mobile-accessibility-btn:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* Hamburger Menu Button */
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  position: relative;
+}
+
+/* Cache le bouton en mode desktop */
+@media (min-width: 768px) {
+  .hamburger-menu {
+    display: none;
+  }
+}
+
+.hamburger-menu:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger-menu:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.hamburger-line {
+  width: 24px;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  display: block;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+}
+
+.hamburger-menu .hamburger-line:nth-child(1) {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.hamburger-menu .hamburger-line:nth-child(2) {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hamburger-menu .hamburger-line:nth-child(3) {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Hamburger open state */
+.hamburger-menu .hamburger-line.open:nth-child(1) {
+  transform: rotate(45deg) translateY(11px);
+}
+
+.hamburger-menu .hamburger-line.open:nth-child(2) {
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.hamburger-menu .hamburger-line.open:nth-child(3) {
+  transform: rotate(-45deg) translateY(-11px);
+}

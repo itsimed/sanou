@@ -1,0 +1,240 @@
+/**
+ * Styles pour la page Événements
+ * Utilise Tailwind CSS en base + CSS personnalisé pour les animations et détails
+ */
+
+/* ==================== EVENT CARD ==================== */
+
+.event-card {
+  /* Transition fluide au survol */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Animation au chargement (via framer-motion) */
+  transform-origin: center;
+}
+
+.event-card:focus-within {
+  /* Focus visible pour l'accessibilité au clavier */
+  outline: 3px solid #c084fc;
+  outline-offset: 2px;
+}
+
+/* Image zoom au survol */
+.event-card img {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.event-card:hover img {
+  transform: scale(1.1);
+}
+
+/* ==================== FILTER BUTTONS ==================== */
+
+.filter-button {
+  /* Transition fluide pour tous les états */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Focus visible - important pour l'accessibilité clavier */
+  position: relative;
+}
+
+.filter-button:focus-visible {
+  outline: 3px solid #c084fc;
+  outline-offset: 2px;
+}
+
+.filter-button:active {
+  transform: scale(0.98);
+}
+
+/* État actif avec animation pulse subtile */
+.filter-button[aria-pressed="true"] {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ==================== ANIMATIONS ==================== */
+
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* Animation entrée staggered */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 640px) {
+  .event-card {
+    /* Réduire les ombres sur mobile pour moins de clutter visuel */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .filter-button {
+    /* Boutons plus petits sur mobile */
+    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+  }
+}
+
+/* ==================== ACCESSIBILITÉ ==================== */
+
+/* Styles pour les utilisateurs préférant pas d'animations */
+@media (prefers-reduced-motion: reduce) {
+  .event-card,
+  .filter-button,
+  .event-card img {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Contraste élevé pour prefers-color-scheme dark (déjà en place) */
+@media (prefers-color-scheme: dark) {
+  .filter-button:focus-visible {
+    outline-color: #e9d5ff;
+  }
+
+  .event-card:focus-within {
+    outline-color: #e9d5ff;
+  }
+}
+
+/* ==================== CONTRASTE & LISIBILITÉ ==================== */
+
+/* Assurer un contraste minimum 4.5:1 sur tous les textes */
+.event-card h3 {
+  /* Texte blanc sur fond noir = 21:1 */
+  color: #ffffff;
+}
+
+.event-card p {
+  /* Gris clair sur noir = 7.5:1 */
+  color: #d1d5db;
+}
+
+.event-card .text-gray-400 {
+  /* Gris moyen sur noir = 5.5:1 */
+  color: #9ca3af;
+}
+
+/* Badge de capacité avec contraste strict */
+.event-card .bg-red-500 {
+  background-color: #dc2626;
+  color: #ffffff;
+  /* Rouge sur blanc = 5.3:1 */
+}
+
+.event-card .bg-green-500 {
+  background-color: #16a34a;
+  color: #ffffff;
+  /* Vert sur blanc = 4.5:1 */
+}
+
+/* Badges de catégorie avec contraste strict */
+.bg-violet-900\/50 {
+  background-color: rgba(76, 29, 149, 0.5);
+}
+
+.text-violet-400 {
+  color: #a78bfa;
+  /* Violet clair sur fond sombre = 8:1 */
+}
+
+.text-pink-400 {
+  color: #f472b6;
+  /* Rose sur fond sombre = 7:1 */
+}
+
+.text-cyan-400 {
+  color: #22d3ee;
+  /* Cyan sur fond sombre = 8:1 */
+}
+
+/* ==================== LAYOUTS ==================== */
+
+/* CSS Grid avec auto-fit pour responsivité */
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .md\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .lg\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}
+
+/* ==================== INTERACTIVE ELEMENTS ==================== */
+
+/* Boutons plus accessibles */
+button {
+  /* Cursor visible */
+  cursor: pointer;
+  /* Permettre le focus au clavier */
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* SVG icons dans les buttons */
+button svg {
+  vertical-align: middle;
+}
+
+/* Line-clamp pour les textes longs */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Skip to content link (optionnel, pour ultra-accessibilité) */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #c084fc;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}

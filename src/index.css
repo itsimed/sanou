@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  --a11y-line-height: 1;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: var(--a11y-line-height, 1.5);
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Bouton "Faire un Don" - Style élégant avec cadre décalé */
+.btn-don {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  font-family: 'Fondamento', 'Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: transform 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
+  z-index: 0;
+}
+
+/* Icône "lien externe" */
+.btn-don svg {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  stroke: #000000;
+  stroke-width: 2;
+}
+
+/* Cadre blanc décalé en arrière-plan */
+.btn-don::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ffffff;
+  background-color: transparent;
+  z-index: -1;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Effet au survol : le bouton rejoint son cadre */
+.btn-don:hover {
+  transform: translate(14px, 14px);
+}
+
+.btn-don:hover::after {
+  top: 0;
+  left: 0;
+}
+
+/* Variante mobile (sans positionnement absolu) */
+.btn-don-mobile {
+  width: 100%;
+  padding: 1.5rem 2.5rem !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .btn-don {
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .btn-don-mobile {
+    padding: 1.5rem 2.5rem !important;
+  }
+  
+  .btn-don svg {
+    width: 16px;
+    height: 16px;
+    top: 8px;
+    right: 8px;
+  }
+  
+  .btn-don::after {
+    top: 10px;
+    left: 10px;
+    border-width: 1.5px;
+  }
+}
+
+@media (max-width: 640px) {
+  .btn-don {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    gap: 0.5rem;
+  }
+  
+  .btn-don-mobile {
+    padding: 1.5rem 2rem !important;
+  }
+  
+  .btn-don svg {
+    width: 14px;
+    height: 14px;
+    top: 7px;
+    right: 7px;
+  }
+  
+  .btn-don::after {
+    top: 8px;
+    left: 8px;
+    border-width: 1.5px;
+  }
+}
+
